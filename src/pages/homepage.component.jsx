@@ -9,9 +9,13 @@ export const HomepageComponent = () => {
       <section>
         <SearchComponent className="mt-8" />
       </section>
-      <section>
-        <ItemListComponent />
-        <BasketComponent />
+      <section className="flex w-4/6 m-auto justify-between">
+        <div className="w-5/12">
+          <ItemListComponent />
+        </div>
+        <div className="w-5/12">
+          <BasketComponent />
+        </div>
       </section>
     </div>
   );
