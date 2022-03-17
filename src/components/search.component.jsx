@@ -3,7 +3,7 @@ import React from "react";
 export const SearchComponent = ({ className }) => {
   return (
     <div
-      className={`w-3/5 mx-auto bg-slate-200 rounded-lg border border-slate-400 ${className}`}
+      className={`w-3/5 mx-auto bg-slate-200 rounded-lg border border-slate-400 ${className}  lg:w-1/2 xl:w-5/12`}
     >
       <form action="" className="flex">
         <input

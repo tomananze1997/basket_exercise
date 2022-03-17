@@ -5,11 +5,11 @@ import { ItemListComponent } from "../components/item-list.component";
 
 export const HomepageComponent = () => {
   return (
-    <div className="bg-slate-100 h-full">
-      <section>
-        <SearchComponent className="mt-8" />
+    <div className="h-full">
+      <section className="mt-8">
+        <SearchComponent />
       </section>
-      <section className="flex w-4/6 m-auto justify-between">
+      <section className="flex w-4/6 m-auto justify-between mt-8">
         <div className="w-5/12">
           <ItemListComponent />
         </div>
