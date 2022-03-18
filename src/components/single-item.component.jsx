@@ -3,6 +3,8 @@ import { FaPlusSquare } from "react-icons/fa";
 import { FaMinusSquare } from "react-icons/fa";
 
 const SingleItemComponent = ({ item, first, add, overline, quantity }) => {
+  const { name } = item;
+  console.log(`console log in item component: ${name}`);
   return (
     <div
       className={`${
@@ -19,9 +21,7 @@ const SingleItemComponent = ({ item, first, add, overline, quantity }) => {
       )}
 
       <span className="mr-1">{quantity}</span>
-      <span className={`${overline ? "line-through	" : null}`}>
-        Item component
-      </span>
+      <span className={`${overline ? "line-through	" : null}`}>{name}</span>
     </div>
   );
 };

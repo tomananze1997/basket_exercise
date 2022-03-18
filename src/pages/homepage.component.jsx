@@ -13,9 +13,7 @@ export const HomepageComponent = () => {
         <div className="w-5/12">
           <ItemListComponent />
         </div>
-        <div className="w-5/12">
-          <BasketComponent />
-        </div>
+        <div className="w-5/12">{/* <BasketComponent /> */}</div>
       </section>
     </div>
   );
