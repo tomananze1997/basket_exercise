@@ -3,11 +3,11 @@ import { FaLeaf } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import SingleItemComponent from "./single-item.component";
 
-export const ItemListComponent = () => {
+const ItemListComponent = () => {
   const add = true;
   const first = true;
   const items = useSelector((store) => store.items.items);
-  console.log(`console log in main component: ${items}`);
+  console.log(`console log in main component: ${JSON.stringify(items)}`);
   return (
     <div>
       <span className="flex text-xl font-semibold items-center mb-5">
@@ -15,7 +15,7 @@ export const ItemListComponent = () => {
       </span>
       <section className="flex flex-col ">
         {items.map((item, idx) => {
-          if (idx / 2 === 0) {
+          if (idx % 2 === 0) {
             return (
               <SingleItemComponent
                 add={add}
@@ -32,3 +32,5 @@ export const ItemListComponent = () => {
     </div>
   );
 };
+
+export default ItemListComponent;
