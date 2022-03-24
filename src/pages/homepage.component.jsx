@@ -4,6 +4,8 @@ import { BasketComponent } from "../components/basket-item-list.component";
 import ItemListComponent from "../components/item-list.component";
 
 export const HomepageComponent = () => {
+
+
   return (
     <div className="h-full">
       <section className="mt-8">

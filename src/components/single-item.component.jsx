@@ -1,12 +1,25 @@
 import React from "react";
 import { FaPlusSquare } from "react-icons/fa";
 import { FaMinusSquare } from "react-icons/fa";
+import {useDispatch} from "react-redux";
+import {addToBasket} from "../redux/basket/basket.actions";
 
-const SingleItemComponent = ({ item, first, add, overline, quantity }) => {
-  const { name } = item;
+const SingleItemComponent = ({ item ={name: ""}, first, add, overline, quantity }) => {
+ const { name } = item
+    const dispatch = useDispatch()
+
+
   console.log(`console log in item component: ${name}`);
+
+ const handleOnAdd = () =>{
+     if(add){
+         dispatch(addToBasket(item))
+     }
+ }
+
   return (
     <div
+        onClick={handleOnAdd}
       className={`${
         first ? "bg-itemCustomOne" : "bg-itemCustomTwo"
       } w-full flex items-center cursor-pointer my-1 py-2 group`}
@@ -21,7 +34,7 @@ const SingleItemComponent = ({ item, first, add, overline, quantity }) => {
       )}
 
       <span className="mr-1">{quantity}</span>
-      <span className={`${overline ? "line-through	" : null}`}>{name}</span>
+      <span className={`${overline ? "line-through" : null}`}>{name}</span>
     </div>
   );
 };
