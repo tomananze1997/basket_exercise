@@ -1,25 +1,35 @@
 import React from "react";
 import { FaPlusSquare } from "react-icons/fa";
 import { FaMinusSquare } from "react-icons/fa";
-import {useDispatch} from "react-redux";
-import {addToBasket} from "../redux/basket/basket.actions";
+import { useDispatch } from "react-redux";
+import {
+  addToBasket,
+  RemoveItemFromBasket,
+} from "../redux/basket/basket.actions";
 
-const SingleItemComponent = ({ item ={name: ""}, first, add, overline, quantity }) => {
- const { name } = item
-    const dispatch = useDispatch()
-
+const SingleItemComponent = ({
+  item = { name: "" },
+  first,
+  add,
+  overline,
+  quantity,
+}) => {
+  const { name } = item;
+  const dispatch = useDispatch();
 
   console.log(`console log in item component: ${name}`);
 
- const handleOnAdd = () =>{
-     if(add){
-         dispatch(addToBasket(item))
-     }
- }
+  const handleOnAdd = () => {
+    if (add) {
+      dispatch(addToBasket(item));
+    } else if (!add) {
+      dispatch(RemoveItemFromBasket(item));
+    }
+  };
 
   return (
     <div
-        onClick={handleOnAdd}
+      onClick={handleOnAdd}
       className={`${
         first ? "bg-itemCustomOne" : "bg-itemCustomTwo"
       } w-full flex items-center cursor-pointer my-1 py-2 group`}

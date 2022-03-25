@@ -2,14 +2,17 @@ import React from "react";
 import { BsBasket2Fill } from "react-icons/bs";
 import { FaRegTrashAlt } from "react-icons/fa";
 import SingleItemComponent from "./single-item.component";
-import {useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeAllFromBasket } from "../redux/basket/basket.actions";
 
 export const BasketComponent = () => {
-  const first = true;
   const bought = true;
-  const quantity = 1;
-  const items = useSelector(store => store.basket.items)
+  const items = useSelector((store) => store.basket.items);
+  const dispatch = useDispatch();
 
+  const handleClick = () => {
+    dispatch(removeAllFromBasket());
+  };
 
   return (
     <div>
@@ -17,15 +20,22 @@ export const BasketComponent = () => {
         <BsBasket2Fill className="mr-2" />
 
         <span>Basket</span>
-        <FaRegTrashAlt className="ml-auto text-base text-red-300 hover:text-red-500 hover:scale-110" />
+        <FaRegTrashAlt
+          onClick={handleClick}
+          className="ml-auto text-base text-red-300 hover:text-red-500 hover:scale-110"
+        />
       </div>
       <section className="flex flex-col">
-          {items.map((item)=>(
-              <SingleItemComponent item={item} first={first} quantity={item.quantity} />
-          ))}
+        {items.map((item, idx) => (
+          <SingleItemComponent
+            item={item}
+            first={idx % 2 === 0}
+            quantity={item.quantity}
+          />
+        ))}
       </section>
     </div>
   );
 };
 
-export default BasketComponent
+export default BasketComponent;

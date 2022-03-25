@@ -7,8 +7,7 @@ const ItemListComponent = () => {
   const add = true;
 
   const items = useSelector((store) => store.items.items);
-console.log(items, items.length)
-
+  console.log(items, items.length);
 
   return (
     <div>
@@ -17,14 +16,13 @@ console.log(items, items.length)
       </span>
       <section className="flex flex-col ">
         {items.map((item, idx) => (
-              <SingleItemComponent
-                add={add}
-                item={item}
-                key={item.id}
-                first={idx % 2 === 0}
-              />
-            )
-        )}
+          <SingleItemComponent
+            add={add}
+            item={item}
+            key={item.id}
+            first={idx % 2 === 0}
+          />
+        ))}
       </section>
     </div>
   );

@@ -28,6 +28,29 @@ const basketReducer = (state = INITIAL_STATE, action) => {
         ...state,
         items: newItems,
       };
+    case BasketActionTypes.REMOVE_ALL_FROM_BASKET:
+      return {
+        ...state,
+        items: [],
+      };
+    case BasketActionTypes.REMOVE_ITEM_FROM_BASKET:
+      const foundItem = state.basket.find(({ id }) => id === action.payload.id);
+      if (foundItem) {
+        console.log(foundItem);
+      } else {
+        console.log("item not found");
+      }
+      let itemArray;
+      if (foundItem.quantity > 1) {
+        itemArray = [...state.basket, { ...foundItem, quantity: quantity - 1 }];
+      } else {
+        itemArray = state.basket.filter((item) => item.id !== foundItem.id);
+      }
+      return {
+        ...state,
+        items: itemArray,
+      };
+      break;
     default:
       return state;
   }
