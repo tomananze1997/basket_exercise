@@ -7,7 +7,6 @@ const ItemListComponent = () => {
   const add = true;
 
   const items = useSelector((store) => store.items.items);
-  console.log(items, items.length);
 
   return (
     <div>

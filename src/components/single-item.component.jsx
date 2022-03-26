@@ -17,8 +17,6 @@ const SingleItemComponent = ({
   const { name } = item;
   const dispatch = useDispatch();
 
-  console.log(`console log in item component: ${name}`);
-
   const handleOnAdd = () => {
     if (add) {
       dispatch(addToBasket(item));

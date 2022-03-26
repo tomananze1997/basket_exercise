@@ -31,6 +31,7 @@ export const BasketComponent = () => {
             item={item}
             first={idx % 2 === 0}
             quantity={item.quantity}
+            key={item.id}
           />
         ))}
       </section>
