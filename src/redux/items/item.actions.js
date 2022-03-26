@@ -1,5 +1,5 @@
 import { ItemActionTypes as action } from "./item.action-types";
 
-export const reciveAllItems = () => {
-  return { type: action.reciveAllItems };
+export const filterAllItems = (string) => (dispatch) => {
+  dispatch({ type: action.filterAllItems, payload: string });
 };

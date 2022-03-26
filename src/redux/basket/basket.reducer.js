@@ -34,31 +34,20 @@ const basketReducer = (state = INITIAL_STATE, action) => {
         items: [],
       };
     case BasketActionTypes.REMOVE_ITEM_FROM_BASKET:
-      // console.log("zakaj je tole undefined??" + state);
-      const foundItem = state.basket.items.find(
-        (id) => id === action.payload.id
-      );
-      if (foundItem) {
-        console.log(foundItem);
-      } else {
-        console.log("item not found");
-      }
+      const foundItem = state.items.find(({ id }) => id === action.payload.id);
       let itemArray;
       if (foundItem.quantity > 1) {
         itemArray = [
-          ...state.basket,
+          ...state.items,
           { ...foundItem, quantity: foundItem.quantity - 1 },
         ];
       } else {
-        itemArray = state.basket.items.filter(
-          (item) => item.id !== foundItem.id
-        );
+        itemArray = state.items.filter(({ id }) => id !== foundItem.id);
       }
       return {
         ...state,
-        items: itemArray, //ali prov tole vrnem oz ali pomeni tole: overwriti celoten state in dodaj ta item. V tem primeru, kaj se zgodi s prejšnjim itemom z tem idjem? ali ga react zazna kot isti object in ga overwrita?
+        items: itemArray,
       };
-      break;
     default:
       return state;
   }
