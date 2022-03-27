@@ -35,8 +35,29 @@ const basketReducer = (state = INITIAL_STATE, action) => {
       };
     case BasketActionTypes.REMOVE_ITEM_FROM_BASKET:
       const foundItem = state.items.find(({ id }) => id === action.payload.id);
+      // if (foundItem) {
+      //   console.log(foundItem);
+      // } else {
+      //   console.log("item not found");
+      // }
+      // let itemArray;
+      // if (foundItem.quantity > 1) {
+      //   itemArray = [...state.items, { ...foundItem, quantity: quantity - 1 }];
+      // } else {
+      //   itemArray = state.items.filter((item) => item.id !== foundItem.id);
+      // }
+      // return {
+      //   ...state,
+      //   items: itemArray,
+      // };
+      console.log(foundItem);
       let itemArray;
       if (foundItem.quantity > 1) {
+        itemArray = state.items.map((item) => {
+          return item.id === foundItem.id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item;
+        });
         itemArray = [
           ...state.items,
           { ...foundItem, quantity: foundItem.quantity - 1 },

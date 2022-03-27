@@ -3,27 +3,28 @@ import { FaLeaf } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import SingleItemComponent from "./single-item.component";
 import { searchContext } from "../pages/homepage.component";
+import { logDOM } from "@testing-library/react";
 
 const ItemListComponent = () => {
   const add = true;
+  const items = useSelector((store) => store.items.items);
   //tukej mi vrne undefined oz nek error
-  const { search } = useContext(searchContext);
-  const storeItems = useSelector((store) => store.items.items);
-  const [items, setItems] = useState(storeItems);
-  useEffect(
-    (storeItems) => {
-      console.log(storeItems);
-      if (search !== "") {
-        let filteredItems = storeItems.filter(({ name }) => {
-          return name.contains(search);
-        });
-        setItems(filteredItems);
-      } else {
-        setItems(storeItems);
-      }
-    },
-    [search]
-  );
+  // const { search } = useContext(searchContext);
+  // const storeItems = useSelector((store) => store.items.items);
+  // const [items, setItems] = useState(storeItems);
+  // useEffect(
+  //   (storeItems) => {
+  //     if (search !== "") {
+  //       let filteredItems = storeItems.filter(({ name }) => {
+  //         return name.contains(search);
+  //       });
+  //       setItems(filteredItems);
+  //     } else {
+  //       setItems(storeItems);
+  //     }
+  //   },
+  //   [search]
+  // );
   //..................
   return (
     <div>
@@ -31,6 +32,7 @@ const ItemListComponent = () => {
         <FaLeaf className="mr-2" /> Groceries
       </span>
       <section className="flex flex-col ">
+        {console.log("first" + items)}
         {items.map((item, idx) => (
           <SingleItemComponent
             add={add}
