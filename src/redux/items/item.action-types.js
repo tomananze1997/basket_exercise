@@ -1,1 +1,3 @@
-export const ItemActionTypes = {};
+export const ItemActionTypes = {
+  FILTER_ITEMS: "FILTER_ITEMS",
+};

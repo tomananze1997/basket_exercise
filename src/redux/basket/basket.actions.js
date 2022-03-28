@@ -19,3 +19,16 @@ export const RemoveItemFromBasket = (item) => (dispatch) => {
     payload: item,
   });
 };
+
+export const purchaseItem = (item) => (dispatch) => {
+  dispatch({
+    type: BasketActionTypes.ITEM_PURCHASED,
+    payload: item,
+  });
+};
+export const changeShownItems = (string) => (dispatch) => {
+  dispatch({
+    type: BasketActionTypes.CHANGE_SHOWN_ITEMS,
+    payload: string,
+  });
+};

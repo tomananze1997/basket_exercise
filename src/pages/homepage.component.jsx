@@ -3,13 +3,12 @@ import { SearchComponent } from "../components/search.component";
 import { BasketComponent } from "../components/basket-item-list.component";
 import ItemListComponent from "../components/item-list.component";
 
-export const searchContext = createContext();
+export const searchContext = createContext(null);
 export const HomepageComponent = () => {
   const [search, setSearch] = useState("");
-
   return (
-    <div className="h-full">
-      <searchContext.Provider value={{ search, setSearch }}>
+    <searchContext.Provider value={{ search, setSearch }}>
+      <div className="h-full">
         <section className="mt-8">
           <SearchComponent />
         </section>
@@ -21,7 +20,7 @@ export const HomepageComponent = () => {
             <BasketComponent />
           </div>
         </section>
-      </searchContext.Provider>
-    </div>
+      </div>
+    </searchContext.Provider>
   );
 };

@@ -2,26 +2,26 @@ import { BasketActionTypes } from "./basket.action-types";
 
 const INITIAL_STATE = {
   items: [],
-  filters: {
-    status: "all",
+  filter: {
+    show: "SHOW_ALL",
   },
 };
 
-const basketReducer = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
+const basketReducer = (state = INITIAL_STATE, { type, payload }) => {
+  switch (type) {
     case BasketActionTypes.ADD_TO_BASKET:
-      const exists = state.items.some(({ id }) => id === action.payload.id);
+      const exists = state.items.some(({ id }) => id === payload.id);
       let newItems;
 
       if (exists) {
         newItems = state.items.map((item) => {
-          if (item.id === action.payload.id) {
-            return { ...item, quantity: item.quantity + 1 };
+          if (item.id === payload.id) {
+            return { ...item, quantity: item.quantity + 1, bought: false };
           }
           return item;
         });
       } else {
-        newItems = [...state.items, { ...action.payload, quantity: 1 }];
+        newItems = [...state.items, { ...payload, quantity: 1, bought: false }];
       }
 
       return {
@@ -34,23 +34,7 @@ const basketReducer = (state = INITIAL_STATE, action) => {
         items: [],
       };
     case BasketActionTypes.REMOVE_ITEM_FROM_BASKET:
-      const foundItem = state.items.find(({ id }) => id === action.payload.id);
-      // if (foundItem) {
-      //   console.log(foundItem);
-      // } else {
-      //   console.log("item not found");
-      // }
-      // let itemArray;
-      // if (foundItem.quantity > 1) {
-      //   itemArray = [...state.items, { ...foundItem, quantity: quantity - 1 }];
-      // } else {
-      //   itemArray = state.items.filter((item) => item.id !== foundItem.id);
-      // }
-      // return {
-      //   ...state,
-      //   items: itemArray,
-      // };
-      console.log(foundItem);
+      const foundItem = state.items.find(({ id }) => id === payload.id);
       let itemArray;
       if (foundItem.quantity > 1) {
         itemArray = state.items.map((item) => {
@@ -58,10 +42,6 @@ const basketReducer = (state = INITIAL_STATE, action) => {
             ? { ...item, quantity: item.quantity - 1 }
             : item;
         });
-        itemArray = [
-          ...state.items,
-          { ...foundItem, quantity: foundItem.quantity - 1 },
-        ];
       } else {
         itemArray = state.items.filter(({ id }) => id !== foundItem.id);
       }
@@ -69,6 +49,27 @@ const basketReducer = (state = INITIAL_STATE, action) => {
         ...state,
         items: itemArray,
       };
+    case BasketActionTypes.ITEM_PURCHASED:
+      let filteredIfBoughtArray;
+      foundItem = state.items.filter(({ id }) => (id = payload.id));
+      filteredIfBoughtArray = state.items.map((item) => {
+        if (item.id === payload.id) {
+          return { ...item, bought: true };
+        } else {
+          return item;
+        }
+      });
+
+      return {
+        ...state,
+        items: filteredIfBoughtArray,
+      };
+    case BasketActionTypes.CHANGE_SHOWN_ITEMS:
+      return {
+        ...state,
+        filter: { show: payload },
+      };
+
     default:
       return state;
   }

@@ -8,10 +8,12 @@ import { removeAllFromBasket } from "../redux/basket/basket.actions";
 export const BasketComponent = () => {
   const bought = true;
   const items = useSelector((store) => store.basket.items);
+  const showFilter = useSelector((store) => store.basket.filter.show);
   const dispatch = useDispatch();
 
   const handleClick = () => {
     dispatch(removeAllFromBasket());
+    console.log(showFilter);
   };
 
   return (
@@ -19,7 +21,7 @@ export const BasketComponent = () => {
       <div className="flex text-xl font-semibold  items-center  mb-5">
         <BsBasket2Fill className="mr-2" />
 
-        <span>Basket</span>
+        <span>Basket </span>
         <FaRegTrashAlt
           onClick={handleClick}
           className="ml-auto text-base text-red-300 hover:text-red-500 hover:scale-110"

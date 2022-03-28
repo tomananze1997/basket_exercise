@@ -22,10 +22,17 @@ const INITIAL_STATE = {
     { name: "Fish", type: "protein", id: 18 },
     { name: "Chicken", type: "protein", id: 19 },
   ],
+  filter: { query: "" },
 };
 
-const itemReducer = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
+const itemReducer = (state = INITIAL_STATE, { type, payload }) => {
+  switch (type) {
+    case ItemActionTypes.FILTER_ITEMS:
+      return {
+        ...state,
+        filter: { query: payload },
+      };
+
     default:
       return state;
   }

@@ -1,22 +1,25 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { ButtonComponent } from "./button.component";
+import { changeShownItems } from "../redux/basket/basket.actions";
 
 export const FooterComponent = () => {
-  const handleClick = () => {
-    alert("Clicked!");
+  const dispatch = useDispatch();
+  const handleButtonOne = () => {
+    dispatch(changeShownItems("SHOW_ALL"));
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    console.log(form[0]);
+  const handleButtonTwo = () => {
+    dispatch(changeShownItems("SHOW_PENDING"));
   };
+  const handleButtonThree = () => {
+    dispatch(changeShownItems("SHOW_PURCHASED"));
+  };
+
   return (
     <div className="h-36 bg-customHeader flex justify-center items-center">
-      <form onSubmit={handleSubmit} action="">
-        <ButtonComponent click={handleClick}>ALL</ButtonComponent>
-        <ButtonComponent click={handleClick}>PENDING</ButtonComponent>
-        <ButtonComponent click={handleClick}>PURCHASED</ButtonComponent>
-      </form>
+      <ButtonComponent click={handleButtonOne}>ALL</ButtonComponent>
+      <ButtonComponent click={handleButtonTwo}> PENDING</ButtonComponent>
+      <ButtonComponent click={handleButtonThree}>PURCHASED</ButtonComponent>
     </div>
   );
 };
