@@ -22,4 +22,28 @@ export const FooterComponent = () => {
       <ButtonComponent click={handleButtonThree}>PURCHASED</ButtonComponent>
     </div>
   );
+  // const footerButtons = [
+  //   {
+  //     name: "All",
+  //     onClick: () => handleOnButtonClick("SHOW_ALL"),
+  //   },
+  //   {
+  //     name: "PENDING",
+  //     onClick: () => handleOnButtonClick("SHOW_SENDING"),
+  //   },
+  //   {
+  //     name: "PURCHASED",
+  //     onClick: () => handleOnButtonClick("SHOW_PURCHASED"),
+  //   },
+  // ];
+  // const handleOnButtonClick = (buttonType) => {
+  //   dispatch(changeShownItems(buttonType));
+  // };
+  // return (
+  //   <div className="h-36 bg-customHeader flex justify-center items-center">
+  //     {footerButtons.map(({ name, onClick }) => (
+  //       <ButtonComponent onClick={onClick}>{name}</ButtonComponent>
+  //     ))}
+  //   </div>
+  // );
 };

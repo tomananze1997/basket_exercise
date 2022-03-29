@@ -22,6 +22,7 @@ export const BasketComponent = () => {
         <BsBasket2Fill className="mr-2" />
 
         <span>Basket </span>
+
         <FaRegTrashAlt
           onClick={handleClick}
           className="ml-auto text-base text-red-300 hover:text-red-500 hover:scale-110"
