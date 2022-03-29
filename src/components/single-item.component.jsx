@@ -13,6 +13,7 @@ const SingleItemComponent = ({
   add,
   overline,
   quantity,
+  showFilter,
 }) => {
   const { name } = item;
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const SingleItemComponent = ({
 
   return (
     <div
-      onClick={handleOnAdd}
+      onClick={showFilter}
       className={`${
         first ? "bg-itemCustomOne" : "bg-itemCustomTwo"
       } w-full flex items-center cursor-pointer my-1 py-2 group`}
@@ -35,10 +36,14 @@ const SingleItemComponent = ({
       {add ? (
         <FaPlusSquare
           className="mx-3 text-white group-hover:scale-110 group-hover:text-green-500"
+          onClick={handleOnAdd}
           style={{ fontWeight: "500" }}
         />
       ) : (
-        <FaMinusSquare className="mx-3 text-white group-hover:scale-110 group-hover:text-red-500" />
+        <FaMinusSquare
+          onClick={handleOnAdd}
+          className="mx-3 text-white group-hover:scale-110 group-hover:text-red-500"
+        />
       )}
 
       <span className="mr-1">{quantity}</span>

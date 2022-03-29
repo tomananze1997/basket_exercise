@@ -7,7 +7,7 @@ import { filterItemList } from "../redux/items/item.actions";
 
 const ItemListComponent = () => {
   // radio --------
-  const [radioValue, setRadioValue] = useState("any");
+  const [radioValue, setRadioValue] = useState("all");
   const [displayRadio, setRadioDisplay] = useState(false);
 
   const handleChange = (event) => {
@@ -25,6 +25,7 @@ const ItemListComponent = () => {
 
   useEffect(() => {
     if (radioValue !== "all") {
+      console.log(radioValue);
       console.log("first if " + reduxItems);
       const TypeArray = reduxItems.filter(({ type }) => type === radioValue);
       console.log(TypeArray);

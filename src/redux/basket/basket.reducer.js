@@ -51,19 +51,19 @@ const basketReducer = (state = INITIAL_STATE, { type, payload }) => {
       };
     case BasketActionTypes.ITEM_PURCHASED:
       let filteredIfBoughtArray;
-      foundItem = state.items.filter(({ id }) => (id = payload.id));
-      filteredIfBoughtArray = state.items.map((item) => {
-        if (item.id === payload.id) {
-          return { ...item, bought: true };
-        } else {
-          return item;
-        }
-      });
+      const foundBought = state.items.filter(({ id }) => (id = payload.id));
+    // filteredIfBoughtArray = state.items.map((item) => {
+    //   if (item.id === payload.id) {
+    //     return { ...item, bought: !item.bought };
+    //   } else {
+    //     return item;
+    //   }
+    // });
 
-      return {
-        ...state,
-        items: filteredIfBoughtArray,
-      };
+    // return {
+    //   ...state,
+    //   item: item.
+    // };
     case BasketActionTypes.CHANGE_SHOWN_ITEMS:
       return {
         ...state,
