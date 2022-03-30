@@ -50,20 +50,22 @@ const basketReducer = (state = INITIAL_STATE, { type, payload }) => {
         items: itemArray,
       };
     case BasketActionTypes.ITEM_PURCHASED:
-      let filteredIfBoughtArray;
-      const foundBought = state.items.filter(({ id }) => (id = payload.id));
-    // filteredIfBoughtArray = state.items.map((item) => {
-    //   if (item.id === payload.id) {
-    //     return { ...item, bought: !item.bought };
-    //   } else {
-    //     return item;
-    //   }
-    // });
+      console.log("***********************+");
+      console.log(payload);
+      const filteredIfBoughtArray = state.items.map((item) => {
+        if (item.id === payload.id) {
+          console.log("changed");
+          return { ...item, bought: !item.bought };
+        } else {
+          console.log("not changed");
+          return item;
+        }
+      });
 
-    // return {
-    //   ...state,
-    //   item: item.
-    // };
+      return {
+        ...state,
+        items: filteredIfBoughtArray,
+      };
     case BasketActionTypes.CHANGE_SHOWN_ITEMS:
       return {
         ...state,
