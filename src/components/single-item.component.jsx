@@ -13,7 +13,6 @@ const SingleItemComponent = ({
   first,
   add,
   overline,
-  quantity,
   showFilter,
 }) => {
   const { name } = item;
@@ -50,7 +49,7 @@ const SingleItemComponent = ({
         />
       )}
 
-      <span className="mr-1">{quantity}</span>
+      <span className="mr-1">{item.quantity}</span>
       <span className={`${item.bought ? "line-through" : null}`}>{name}</span>
     </div>
   );

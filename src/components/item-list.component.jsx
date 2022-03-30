@@ -21,33 +21,16 @@ const ItemListComponent = () => {
   const reduxItems = useSelector((store) => store.items.items);
   const reduxQuery = useSelector((store) => store.items.filter.query);
   const [filteredItems, setFilteredItems] = useState(reduxItems);
-  const [items, setItems] = useState(reduxItems);
 
-  useEffect(() => {
-    if (radioValue !== "all") {
-      console.log(radioValue);
-      console.log("first if " + reduxItems);
-      const TypeArray = reduxItems.filter(({ type }) => type === radioValue);
-      console.log(TypeArray);
-      setFilteredItems(TypeArray);
-    } else {
-      console.log("second if " + reduxItems);
-      setFilteredItems(reduxItems);
-      console.log("************");
-      console.log(filteredItems);
-    }
-  }, [radioValue]);
 
-  useEffect(() => {
-    if (reduxQuery !== "") {
-      const filteredArray = filteredItems.filter(({ name }) =>
-        name.toLowerCase().includes(reduxQuery)
-      );
-      setItems(filteredArray);
-    } else {
-      setItems(reduxItems);
-    }
-  }, [reduxQuery]);
+
+  useEffect(()=>{
+      const filteredQueryItems = reduxQuery ? reduxItems.filter(({ name }) =>
+          name.toLowerCase().includes(reduxQuery.toLowerCase())) : reduxItems
+      const filterRadioItems = radioValue === "all" ? filteredQueryItems : filteredQueryItems.filter(({ type }) => type === radioValue);
+    setFilteredItems(filterRadioItems)
+  },[reduxQuery, radioValue])
+
 
   return (
     <div>
@@ -147,7 +130,7 @@ const ItemListComponent = () => {
       </span>
 
       <section className="flex flex-col">
-        {items.map((item, idx) => (
+        {filteredItems.map((item, idx) => (
           <SingleItemComponent
             add={add}
             item={item}

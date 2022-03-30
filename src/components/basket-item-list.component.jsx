@@ -43,7 +43,7 @@ export const BasketComponent = () => {
       <div className="flex text-xl font-semibold  items-center  mb-5">
         <BsBasket2Fill className="mr-2" />
 
-        <span>Basket </span>
+        <span>Basket</span>
 
         <FaRegTrashAlt
           onClick={handleTrashClick}
@@ -55,9 +55,8 @@ export const BasketComponent = () => {
           <SingleItemComponent
             item={item}
             first={idx % 2 === 0}
-            quantity={item.quantity}
             key={item.id}
-            showFilter={handleItemClick}
+            showFilter={()=>handleItemClick(item)}
           />
         ))}
       </section>
