@@ -12,7 +12,6 @@ const SingleItemComponent = ({
   item = { name: "" },
   first,
   add,
-  overline,
   showFilter,
 }) => {
   const { name } = item;

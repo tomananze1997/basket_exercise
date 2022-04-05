@@ -4,17 +4,23 @@ import { useSelector, useDispatch } from "react-redux";
 import SingleItemComponent from "./single-item.component";
 import { searchContext } from "../pages/homepage.component";
 import { filterItemList } from "../redux/items/item.actions";
+import { Modal } from "./modal.component-portal";
+import { NewItem } from "./newItem.component-portal";
 
 const ItemListComponent = () => {
-  // radio --------
-  const [radioValue, setRadioValue] = useState("all");
-  const [displayRadio, setRadioDisplay] = useState(false);
+  // modal --------
+  const [modalValue, setmodalValue] = useState("all");
+  const [displayModal, setModalDisplay] = useState(false);
+  const [displayModalNewItem, setModalDisplayNewItem] = useState(false);
 
   const handleChange = (event) => {
-    setRadioValue(event.target.value);
+    setmodalValue(event.target.value);
   };
-  const handleClick = () => {
-    setRadioDisplay(!displayRadio);
+  const handleClickModal = () => {
+    setModalDisplay(!displayModal);
+  };
+  const handleClickModalNewItem = () => {
+    setModalDisplayNewItem(!displayModalNewItem);
   };
   // --------------
   const add = true;
@@ -22,110 +28,42 @@ const ItemListComponent = () => {
   const reduxQuery = useSelector((store) => store.items.filter.query);
   const [filteredItems, setFilteredItems] = useState(reduxItems);
 
-
-
-  useEffect(()=>{
-      const filteredQueryItems = reduxQuery ? reduxItems.filter(({ name }) =>
-          name.toLowerCase().includes(reduxQuery.toLowerCase())) : reduxItems
-      const filterRadioItems = radioValue === "all" ? filteredQueryItems : filteredQueryItems.filter(({ type }) => type === radioValue);
-    setFilteredItems(filterRadioItems)
-  },[reduxQuery, radioValue])
-
+  useEffect(() => {
+    const filteredQueryItems = reduxQuery
+      ? reduxItems.filter(({ name }) =>
+          name.toLowerCase().includes(reduxQuery.toLowerCase())
+        )
+      : reduxItems;
+    const filterRadioItems =
+      modalValue === "all"
+        ? filteredQueryItems
+        : filteredQueryItems.filter(({ type }) => type === modalValue);
+    setFilteredItems(filterRadioItems);
+  }, [reduxQuery, modalValue]);
 
   return (
     <div>
       <span className="flex text-xl font-semibold items-center mb-5 relative">
         <FaLeaf className="mr-2" /> Groceries
-        <span
-          onClick={handleClick}
-          className="ml-auto text-xs cursor-pointer bg-slate-100 p-1 rounded-md"
-        >
-          Search Type:
-          {" " + radioValue.charAt(0).toUpperCase() + radioValue.slice(1)}
-        </span>
-        <div
-          className={`absolute -right-32 top-0 text-sm bg-slate-200 p-3 rounded-md bg-opacity-40 ${
-            displayRadio ? "block" : "hidden"
-          }`}
-        >
-          <div className="flex items-center">
-            <input
-              type="radio"
-              id="all"
-              className="h-2 w-2 "
-              name="type"
-              value="all"
-              onChange={handleChange}
+        <div>
+          <span
+            onClick={handleClickModal}
+            className="ml-auto text-xs cursor-pointer bg-slate-100 p-1 rounded-md"
+          >
+            Search Type:
+            {" " + modalValue.charAt(0).toUpperCase() + modalValue.slice(1)}
+            <Modal
+              openPortal={displayModal}
+              handleChange={handleChange}
+              handleClickModal={handleClickModal}
             />
-            <label className="ml-2" htmlFor="all">
-              All
-            </label>
-          </div>
-          <div className="flex items-center">
-            <input
-              type="radio"
-              id="fruit"
-              className="h-2 w-2 "
-              name="type"
-              value="fruit"
-              onChange={handleChange}
-            />
-            <label className="ml-2" htmlFor="fruit">
-              Fruit
-            </label>
-          </div>
-          <div className="flex items-center">
-            <input
-              type="radio"
-              id="vegetables"
-              name="type"
-              className="h-2 w-2 "
-              value="vegetables"
-              onChange={handleChange}
-            />
-            <label className="ml-2" htmlFor="vegetables">
-              Vegetables
-            </label>
-          </div>
-          <div className="flex items-center">
-            <input
-              type="radio"
-              id="dairy"
-              className="h-2 w-2 "
-              name="type"
-              value="dairy"
-              onChange={handleChange}
-            />
-            <label className="ml-2" htmlFor="dairy">
-              Dairy
-            </label>
-          </div>
-          <div className="flex items-center">
-            <input
-              type="radio"
-              id="grains"
-              className="h-2 w-2 "
-              name="type"
-              value="grains"
-              onChange={handleChange}
-            />
-            <label className="ml-2" htmlFor="grains">
-              Grains
-            </label>
-          </div>
-          <div className="flex items-center">
-            <input
-              type="radio"
-              id="protein"
-              className="h-2 w-2 "
-              name="type"
-              value="protein"
-              onChange={handleChange}
-            />
-            <label className="ml-2" htmlFor="protein">
-              Protein
-            </label>
-          </div>
+          </span>
+          <span
+            onClick={handleClickModalNewItem}
+            className="ml-auto text-xs cursor-pointer bg-slate-100 p-1 rounded-md"
+          >
+            Create New Item
+          </span>
         </div>
       </span>
 
