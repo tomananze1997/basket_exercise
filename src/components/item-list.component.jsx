@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { FaLeaf } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import SingleItemComponent from "./single-item.component";
-import { Modal } from "./modal.component-portal";
-import { NewItem } from "./newItem.component-portal";
+import Modal from "./modal.component-portal";
+import NewItem from "./newItem.component-portal";
 
 const ItemListComponent = () => {
   const [modalValue, setmodalValue] = useState("all");

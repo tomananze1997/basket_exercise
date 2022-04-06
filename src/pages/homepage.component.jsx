@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { SearchComponent } from "../components/search.component";
+import SearchComponent from "../components/search.component";
 import { BasketComponent } from "../components/basket-item-list.component";
 import ItemListComponent from "../components/item-list.component";
 

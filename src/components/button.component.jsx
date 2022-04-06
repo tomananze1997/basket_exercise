@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ButtonComponent = ({ children, click, active, type }) => {
+const ButtonComponent = ({ children, click, type }) => {
   return (
     <button
       onClick={click}

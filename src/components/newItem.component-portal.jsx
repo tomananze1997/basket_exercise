@@ -3,10 +3,11 @@ import ReactDOM from "react-dom";
 import { v4 as uuidv4 } from "uuid";
 import { addItem } from "../redux/items/item.actions";
 import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 
 import ButtonComponent from "./button.component";
 
-export const NewItem = ({ openPortal, handleOpenModal }) => {
+const NewItem = ({ openPortal, handleOpenModal }) => {
   const dispatch = useDispatch();
   const [name, setName] = useState(null);
   const [type, setType] = useState("fruit");
@@ -65,3 +66,10 @@ export const NewItem = ({ openPortal, handleOpenModal }) => {
     document.getElementById("modalNewItem")
   );
 };
+
+NewItem.propTypes = {
+  openPortal: PropTypes.func.isRequired,
+  handleOpenModal: PropTypes.func.isRequired,
+};
+
+export default NewItem;

@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export const RadioInput = ({ label, id, value, handleChange }) => {
+const RadioInput = ({ label, id, value, handleChange }) => {
   return (
     <div className="flex items-center">
       <input
@@ -17,3 +18,12 @@ export const RadioInput = ({ label, id, value, handleChange }) => {
     </div>
   );
 };
+
+RadioInput.propTypes = {
+  label: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+};
+
+export default RadioInput;

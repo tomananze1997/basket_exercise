@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+
 import { useDispatch } from "react-redux";
 import { filterItemList } from "../redux/items/item.actions";
 
-export const SearchComponent = ({ className }) => {
-  // const { setSearch } = useContext(searchContext);
+const SearchComponent = ({ className }) => {
+  console.log(className);
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const handleInput = (event) => {
@@ -26,3 +28,11 @@ export const SearchComponent = ({ className }) => {
     </div>
   );
 };
+SearchComponent.propTypes = {
+  className: PropTypes.string,
+};
+SearchComponent.defaultProps = {
+  className: "",
+};
+
+export default SearchComponent;

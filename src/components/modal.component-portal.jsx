@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { RadioInput } from "./modal-radio.component";
+import PropTypes from "prop-types";
+
+import RadioInput from "./modal-radio.component";
 import ButtonComponent from "./button.component";
 const inputs = [
   { id: "all", value: "all", label: "All" },
@@ -11,7 +13,7 @@ const inputs = [
   { id: "protein", value: "protein", label: "Protein" },
 ];
 
-export const Modal = ({ openPortal, handleChange, handleOpenModal }) => {
+const Modal = ({ openPortal, handleChange, handleOpenModal }) => {
   if (!openPortal) return null;
   return ReactDOM.createPortal(
     <div className="fixed top-0 bottom-0 right-0 left-0 bg-black bg-opacity-70 flex">
@@ -32,3 +34,11 @@ export const Modal = ({ openPortal, handleChange, handleOpenModal }) => {
     document.getElementById("modal")
   );
 };
+//tukej in newItem.component ne javla napake za propTypes.. zakaj?
+Modal.propTypes = {
+  openPortal: PropTypes.func.isRequired,
+  handleOpenModal: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+};
+
+export default Modal;
