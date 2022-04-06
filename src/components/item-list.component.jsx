@@ -1,14 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaLeaf } from "react-icons/fa";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import SingleItemComponent from "./single-item.component";
-import { searchContext } from "../pages/homepage.component";
-import { filterItemList } from "../redux/items/item.actions";
 import { Modal } from "./modal.component-portal";
 import { NewItem } from "./newItem.component-portal";
 
 const ItemListComponent = () => {
-  // modal --------
   const [modalValue, setmodalValue] = useState("all");
   const [displayModal, setModalDisplay] = useState(false);
   const [displayModalNewItem, setModalDisplayNewItem] = useState(false);
@@ -17,12 +14,12 @@ const ItemListComponent = () => {
     setmodalValue(event.target.value);
   };
   const handleClickModal = () => {
+    console.log("clicked");
     setModalDisplay(!displayModal);
   };
   const handleClickModalNewItem = () => {
     setModalDisplayNewItem(!displayModalNewItem);
   };
-  // --------------
   const add = true;
   const reduxItems = useSelector((store) => store.items.items);
   const reduxQuery = useSelector((store) => store.items.filter.query);
@@ -39,31 +36,35 @@ const ItemListComponent = () => {
         ? filteredQueryItems
         : filteredQueryItems.filter(({ type }) => type === modalValue);
     setFilteredItems(filterRadioItems);
-  }, [reduxQuery, modalValue]);
+  }, [reduxQuery, modalValue, reduxItems]);
 
   return (
     <div>
       <span className="flex text-xl font-semibold items-center mb-5 relative">
         <FaLeaf className="mr-2" /> Groceries
-        <div>
+        <div className="absolute right-0 translate-x-10 text-center">
           <span
             onClick={handleClickModal}
-            className="ml-auto text-xs cursor-pointer bg-slate-100 p-1 rounded-md"
+            className="ml-auto text-xs cursor-pointer bg-slate-200 p-1 rounded-md block"
           >
             Search Type:
             {" " + modalValue.charAt(0).toUpperCase() + modalValue.slice(1)}
-            <Modal
-              openPortal={displayModal}
-              handleChange={handleChange}
-              handleClickModal={handleClickModal}
-            />
           </span>
+          <Modal
+            openPortal={displayModal}
+            handleChange={handleChange}
+            handleOpenModal={handleClickModal}
+          />
           <span
             onClick={handleClickModalNewItem}
-            className="ml-auto text-xs cursor-pointer bg-slate-100 p-1 rounded-md"
+            className="block ml-auto text-xs cursor-pointer bg-slate-200 p-1 rounded-md mt-3"
           >
             Create New Item
           </span>
+          <NewItem
+            openPortal={displayModalNewItem}
+            handleOpenModal={handleClickModalNewItem}
+          />
         </div>
       </span>
 

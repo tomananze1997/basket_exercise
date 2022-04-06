@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { ButtonComponent } from "./button.component";
+import ButtonComponent from "./button.component";
 import { changeShownItems } from "../redux/basket/basket.actions";
 
 export const FooterComponent = () => {
@@ -16,7 +16,7 @@ export const FooterComponent = () => {
   };
 
   return (
-    <div className="h-36 bg-customHeader flex justify-center items-center">
+    <div className="h-36 bg-customHeader flex justify-center items-center mt-24">
       <ButtonComponent click={handleButtonOne}>ALL</ButtonComponent>
       <ButtonComponent click={handleButtonTwo}> PENDING</ButtonComponent>
       <ButtonComponent click={handleButtonThree}>PURCHASED</ButtonComponent>

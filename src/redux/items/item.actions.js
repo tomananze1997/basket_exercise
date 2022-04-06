@@ -6,3 +6,10 @@ export const filterItemList = (string) => (dispatch) => {
     payload: string,
   });
 };
+
+export const addItem = (item) => (dispatch) => {
+  dispatch({
+    type: action.ADD_ITEM,
+    payload: item,
+  });
+};

@@ -1,14 +1,26 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export const ButtonComponent = ({ children, click, active }) => {
+const ButtonComponent = ({ children, click, active, type }) => {
   return (
     <button
       onClick={click}
-      className={`text-white font-sans px-2 py-1 bg-gray-700 m-4 rounded ${
-        active ? "bg-slate-400" : null
-      }`}
+      type={type}
+      className={`text-white font-sans px-2 py-1 bg-gray-700 m-4 rounded active:bg-gray-500 active:scale-95`}
     >
       {children}
     </button>
   );
 };
+
+ButtonComponent.propTypes = {
+  children: PropTypes.string.isRequired,
+  click: PropTypes.func.isRequired,
+  active: PropTypes.bool,
+  type: PropTypes.string,
+};
+ButtonComponent.defaultProps = {
+  type: "submit",
+};
+
+export default ButtonComponent;

@@ -32,7 +32,11 @@ const itemReducer = (state = INITIAL_STATE, { type, payload }) => {
         ...state,
         filter: { query: payload },
       };
-
+    case ItemActionTypes.ADD_ITEM:
+      return {
+        ...state,
+        items: [...state.items, payload],
+      };
     default:
       return state;
   }

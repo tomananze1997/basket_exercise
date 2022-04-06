@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { searchContext } from "../pages/homepage.component";
 import { filterItemList } from "../redux/items/item.actions";
 
 export const SearchComponent = ({ className }) => {

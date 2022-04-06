@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import {
   addToBasket,
   RemoveItemFromBasket,
-  purchaseItem,
 } from "../redux/basket/basket.actions";
 
 const SingleItemComponent = ({
@@ -24,12 +23,9 @@ const SingleItemComponent = ({
       dispatch(RemoveItemFromBasket(item));
     }
   };
-  // const handleItemClick = () => {
-  //   dispatch(purchaseItem(item));
-  // };
+
   return (
     <div
-      // onClick={handleItemClick}
       onClick={showFilter}
       className={`${
         first ? "bg-itemCustomOne" : "bg-itemCustomTwo"

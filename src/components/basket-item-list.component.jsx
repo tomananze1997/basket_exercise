@@ -23,11 +23,9 @@ export const BasketComponent = () => {
       setItems(reduxItems);
     } else if (showFilter === "SHOW_PENDING") {
       setItems();
-      console.log(reduxItems);
       const pendingItems = reduxItems.filter(({ bought }) => bought === false);
       setItems(pendingItems);
-    } else if ("SHOW_PURCHASED") {
-      console.log(reduxItems);
+    } else if (showFilter === "SHOW_PURCHASED") {
       const purchasedItems = reduxItems.filter(({ bought }) => bought === true);
       setItems(purchasedItems);
     } else {
@@ -56,7 +54,7 @@ export const BasketComponent = () => {
             item={item}
             first={idx % 2 === 0}
             key={item.id}
-            showFilter={()=>handleItemClick(item)}
+            showFilter={() => handleItemClick(item)}
           />
         ))}
       </section>

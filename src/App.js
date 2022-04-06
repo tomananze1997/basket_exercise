@@ -6,7 +6,7 @@ import { FooterComponent } from "./components/footer.component";
 
 function App() {
   return (
-    <div className="h-screen">
+    <div>
       <Router>
         <HeaderComponent />
         <Routes>
