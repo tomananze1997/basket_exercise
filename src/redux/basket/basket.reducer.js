@@ -1,4 +1,3 @@
-// eslint-disable no-case-declarations
 import { BasketActionTypes } from "./basket.action-types";
 
 const INITIAL_STATE = {

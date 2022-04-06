@@ -36,7 +36,7 @@ const Modal = ({ openPortal, handleChange, handleOpenModal }) => {
 };
 //tukej in newItem.component ne javla napake za propTypes.. zakaj?
 Modal.propTypes = {
-  openPortal: PropTypes.func.isRequired,
+  openPortal: PropTypes.bool.isRequired,
   handleOpenModal: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
 };

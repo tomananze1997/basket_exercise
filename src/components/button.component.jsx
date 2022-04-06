@@ -15,12 +15,14 @@ const ButtonComponent = ({ children, click, type }) => {
 
 ButtonComponent.propTypes = {
   children: PropTypes.string.isRequired,
-  click: PropTypes.func.isRequired,
+  click: PropTypes.func,
   active: PropTypes.bool,
   type: PropTypes.string,
 };
 ButtonComponent.defaultProps = {
   type: "submit",
+  active: null,
+  click: null,
 };
 
 export default ButtonComponent;

@@ -9,7 +9,7 @@ import {
   RemoveItemFromBasket,
 } from "../redux/basket/basket.actions";
 const SingleItemComponent = ({ item, first, add, showFilter }) => {
-  const { name, quantity, bought } = item;
+  const { name, bought } = item;
   const dispatch = useDispatch();
 
   const handleOnAdd = () => {
@@ -42,7 +42,7 @@ const SingleItemComponent = ({ item, first, add, showFilter }) => {
         />
       )}
 
-      <span className="mr-1">{quantity}</span>
+      {item.quantity && <span className="mr-1">{item.quantity}</span>}
       <span className={classNames({ "line-through": bought })}>{name}</span>
     </div>
   );
@@ -51,17 +51,18 @@ const SingleItemComponent = ({ item, first, add, showFilter }) => {
 SingleItemComponent.propTypes = {
   item: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    quantity: PropTypes.number.isRequired,
+    quantity: PropTypes.number,
     bought: PropTypes.bool.isRequired,
     type: PropTypes.string, //nikoli ga ne uporabim v komponenti.. a ga morem še zmer dat?
   }),
   first: PropTypes.bool.isRequired,
   add: PropTypes.bool,
-  showFilter: PropTypes.bool,
+  showFilter: PropTypes.func,
 };
 SingleItemComponent.defaultProp = {
   item: {
     type: "all",
+    quantity: null,
   },
   add: false,
   showFilter: null,

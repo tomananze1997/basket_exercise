@@ -68,7 +68,7 @@ const NewItem = ({ openPortal, handleOpenModal }) => {
 };
 
 NewItem.propTypes = {
-  openPortal: PropTypes.func.isRequired,
+  openPortal: PropTypes.bool.isRequired,
   handleOpenModal: PropTypes.func.isRequired,
 };
 
