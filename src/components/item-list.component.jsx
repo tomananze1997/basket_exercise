@@ -27,9 +27,10 @@ const ItemListComponent = () => {
 
   useEffect(() => {
     const filteredQueryItems = reduxQuery
-      ? reduxItems.filter(({ name }) =>
-          name.toLowerCase().includes(reduxQuery.toLowerCase())
-        )
+      ? reduxItems.filter(({ name }) => {
+          console.log(reduxQuery);
+          return name.toLowerCase().includes(reduxQuery.toLowerCase());
+        })
       : reduxItems;
     const filterRadioItems =
       modalValue === "all"

@@ -52,8 +52,7 @@ SingleItemComponent.propTypes = {
   item: PropTypes.shape({
     name: PropTypes.string.isRequired,
     quantity: PropTypes.number,
-    bought: PropTypes.bool.isRequired,
-    type: PropTypes.string, //nikoli ga ne uporabim v komponenti.. a ga morem še zmer dat?
+    bought: PropTypes.bool,
   }),
   first: PropTypes.bool.isRequired,
   add: PropTypes.bool,
