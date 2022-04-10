@@ -14,7 +14,6 @@ const ItemListComponent = () => {
     setmodalValue(event.target.value);
   };
   const handleClickModal = () => {
-    console.log("clicked");
     setModalDisplay(!displayModal);
   };
   const handleClickModalNewItem = () => {

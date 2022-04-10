@@ -8,11 +8,11 @@ export const HomepageComponent = () => {
   const [search, setSearch] = useState("");
   return (
     <searchContext.Provider value={{ search, setSearch }}>
-      <div className="h-full">
+      <div className="">
         <section className="mt-8">
           <SearchComponent />
         </section>
-        <section className="flex w-4/6 m-auto justify-between mt-8">
+        <section className="flex w-11/12 m-auto justify-between mt-8 mb-20 md:w-4/6 xl:w-3/6">
           <div className="w-5/12">
             <ItemListComponent />
           </div>

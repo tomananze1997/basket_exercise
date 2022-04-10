@@ -37,7 +37,6 @@ const basketReducer = (state = INITIAL_STATE, { type, payload }) => {
     }
     case BasketActionTypes.REMOVE_ITEM_FROM_BASKET: {
       const foundItem = state.items.find(({ id }) => id === payload.id);
-      console.log(foundItem);
       let itemArray;
 
       if (foundItem.bought) {
@@ -75,6 +74,7 @@ const basketReducer = (state = INITIAL_STATE, { type, payload }) => {
       };
     }
     case BasketActionTypes.CHANGE_SHOWN_ITEMS: {
+      console.log(payload);
       return {
         ...state,
         filter: { show: payload },

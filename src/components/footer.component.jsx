@@ -5,45 +5,31 @@ import { changeShownItems } from "../redux/basket/basket.actions";
 
 export const FooterComponent = () => {
   const dispatch = useDispatch();
-  const handleButtonOne = () => {
-    dispatch(changeShownItems("SHOW_ALL"));
-  };
-  const handleButtonTwo = () => {
-    dispatch(changeShownItems("SHOW_PENDING"));
-  };
-  const handleButtonThree = () => {
-    dispatch(changeShownItems("SHOW_PURCHASED"));
-  };
 
+  const handleButtonClick = (type) => {
+    dispatch(changeShownItems(type));
+  };
+  const footerButtons = [
+    {
+      name: "ALL",
+      onClick: () => handleButtonClick("SHOW_ALL"),
+    },
+    {
+      name: "PENDING",
+      onClick: () => handleButtonClick("SHOW_PENDING"),
+    },
+    {
+      name: "PURCHASED",
+      onClick: () => handleButtonClick("SHOW_PURCHASED"),
+    },
+  ];
   return (
-    <div className="h-36 bg-customHeader flex justify-center items-center mt-24">
-      <ButtonComponent click={handleButtonOne}>ALL</ButtonComponent>
-      <ButtonComponent click={handleButtonTwo}> PENDING</ButtonComponent>
-      <ButtonComponent click={handleButtonThree}>PURCHASED</ButtonComponent>
+    <div className="h-36 bg-customHeader flex justify-center items-center mt-auto">
+      {footerButtons.map(({ name, onClick }, idx) => (
+        <ButtonComponent click={onClick} key={idx}>
+          {name}
+        </ButtonComponent>
+      ))}
     </div>
   );
-  // const footerButtons = [
-  //   {
-  //     name: "All",
-  //     onClick: () => handleOnButtonClick("SHOW_ALL"),
-  //   },
-  //   {
-  //     name: "PENDING",
-  //     onClick: () => handleOnButtonClick("SHOW_SENDING"),
-  //   },
-  //   {
-  //     name: "PURCHASED",
-  //     onClick: () => handleOnButtonClick("SHOW_PURCHASED"),
-  //   },
-  // ];
-  // const handleOnButtonClick = (buttonType) => {
-  //   dispatch(changeShownItems(buttonType));
-  // };
-  // return (
-  //   <div className="h-36 bg-customHeader flex justify-center items-center">
-  //     {footerButtons.map(({ name, onClick }) => (
-  //       <ButtonComponent onClick={onClick}>{name}</ButtonComponent>
-  //     ))}
-  //   </div>
-  // );
 };

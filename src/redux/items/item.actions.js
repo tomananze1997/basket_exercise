@@ -1,4 +1,7 @@
-import { ItemActionTypes as action } from "./item.action-types";
+import {
+  ItemActionTypes as action,
+  ItemActionTypes,
+} from "./item.action-types";
 
 export const filterItemList = (string) => (dispatch) => {
   dispatch({
@@ -10,6 +13,13 @@ export const filterItemList = (string) => (dispatch) => {
 export const addItem = (item) => (dispatch) => {
   dispatch({
     type: action.ADD_ITEM,
+    payload: item,
+  });
+};
+
+export const RemoveItem = (item) => (dispatch) => {
+  dispatch({
+    type: ItemActionTypes.REMOVE_ITEM,
     payload: item,
   });
 };

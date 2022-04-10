@@ -37,6 +37,14 @@ const itemReducer = (state = INITIAL_STATE, { type, payload }) => {
         ...state,
         items: [...state.items, payload],
       };
+    case ItemActionTypes.REMOVE_ITEM: {
+      let newItems;
+      newItems = state.items.filter(({ id }) => {
+        return id !== payload.id;
+      });
+
+      return { ...state, items: newItems };
+    }
     default:
       return state;
   }
