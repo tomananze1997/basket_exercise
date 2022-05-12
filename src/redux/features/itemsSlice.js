@@ -1,6 +1,6 @@
-import { ItemActionTypes } from "./item.action-types";
+import { createSlice } from "@reduxjs/toolkit";
 
-const INITIAL_STATE = {
+const initialState = {
   items: [
     { name: "Strawberry", type: "fruit", id: 1 },
     { name: "Blueberry", type: "fruit", id: 2 },
@@ -25,29 +25,24 @@ const INITIAL_STATE = {
   filter: { query: "" },
 };
 
-const itemReducer = (state = INITIAL_STATE, { type, payload }) => {
-  switch (type) {
-    case ItemActionTypes.FILTER_ITEMS:
-      return {
-        ...state,
-        filter: { query: payload },
-      };
-    case ItemActionTypes.ADD_ITEM:
-      return {
-        ...state,
-        items: [...state.items, payload],
-      };
-    case ItemActionTypes.REMOVE_ITEM: {
-      let newItems;
-      newItems = state.items.filter(({ id }) => {
-        return id !== payload.id;
+const itemsSlice = createSlice({
+  name: "items",
+  initialState,
+  reducers: {
+    filterItemList: (state = initialState, action) => {
+      state.filter = action.payload;
+    },
+    addItem: (state = initialState, action) => {
+      state.items.concat(action.payload);
+    },
+    removeItem: (state = initialState, action) => {
+      const newItems = state.items.filter(({ id }) => {
+        return id !== action.payload.id;
       });
+      state.items = newItems;
+    },
+  },
+});
+export const { filterItemList, addItem, removeItem } = itemsSlice.actions;
 
-      return { ...state, items: newItems };
-    }
-    default:
-      return state;
-  }
-};
-
-export default itemReducer;
+export default itemsSlice.reducer;

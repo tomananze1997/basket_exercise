@@ -7,9 +7,9 @@ import { FaMinusSquare } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import {
   addToBasket,
-  RemoveItemFromBasket,
-} from "../redux/basket/basket.actions";
-import { RemoveItem } from "../redux/items/item.actions";
+  removeItemFromBasket,
+} from "../redux/features/basketSlice";
+import { removeItem } from "../redux/features/itemsSlice";
 const SingleItemComponent = ({ item, first, add, showFilter }) => {
   const { name, bought } = item;
   const dispatch = useDispatch();
@@ -19,9 +19,9 @@ const SingleItemComponent = ({ item, first, add, showFilter }) => {
   };
   const handleOnRemove = () => {
     if (add) {
-      dispatch(RemoveItem(item));
+      dispatch(removeItem(item));
     } else if (!add) {
-      dispatch(RemoveItemFromBasket(item));
+      dispatch(removeItemFromBasket(item));
     }
   };
 

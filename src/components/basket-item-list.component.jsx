@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   removeAllFromBasket,
   purchaseItem,
-} from "../redux/basket/basket.actions";
+} from "../redux/features/basketSlice";
 
 export const BasketComponent = () => {
   const dispatch = useDispatch();

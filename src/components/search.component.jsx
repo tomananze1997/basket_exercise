@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { filterItemList } from "../redux/items/item.actions";
+import { filterItemList } from "../redux/features/itemsSlice";
 
 const SearchComponent = () => {
   const dispatch = useDispatch();

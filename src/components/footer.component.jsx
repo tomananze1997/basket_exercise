@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import ButtonComponent from "./button.component";
-import { changeShownItems } from "../redux/basket/basket.actions";
+import { changeShownItems } from "../redux/features/basketSlice";
 
 export const FooterComponent = () => {
   const dispatch = useDispatch();

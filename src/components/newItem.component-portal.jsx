@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { v4 as uuidv4 } from "uuid";
-import { addItem } from "../redux/items/item.actions";
+import { addItem } from "../redux/features/itemsSlice";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 
