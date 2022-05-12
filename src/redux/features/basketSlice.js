@@ -12,7 +12,6 @@ const basketSlice = createSlice({
   initialState,
   reducers: {
     addToBasket: (state = initialState, action) => {
-      console.log(action);
       const exists = state.items.some(({ id }) => id === action.payload.id);
       let newItems;
 
